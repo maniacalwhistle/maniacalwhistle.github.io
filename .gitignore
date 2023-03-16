@@ -1,5 +1,4 @@
 /.quarto/
-_site
 .jekyll-metadata
 .Rproj.user
 */*_cache/**
