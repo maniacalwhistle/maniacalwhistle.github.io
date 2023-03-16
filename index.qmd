@@ -1,0 +1,13 @@
+---
+title: "maniacalwhistle"
+---
+
+### Michael Sampson
+
+I am data scientist by trade, a [master composter](https://www.makecompost.nyc/mastercomposter) and [super steward](https://www.nycgovparks.org/reg/stewardship) on the side. 
+
+I am perpetually interested in, but never a master of, the metamagical programming language LISP and it's dialects/descendants. 
+
+github: [maniacalwhistle](https://github.com/maniacalwhistle "github")  
+pinboard: ?  
+linkedin:[michael sampson](https://www.linkedin.com/in/michael-sampson-2376bb75/)  

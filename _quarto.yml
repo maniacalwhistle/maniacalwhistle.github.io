@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "maniacalwhistle"
+  navbar:
+    title: false
+    collapse: false
+    left:
+      - href: index.qmd
+        text: Home
+      - href: code_stuff.qmd
+        text: code?
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
