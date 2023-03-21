@@ -2,8 +2,8 @@
 title: "Michael Sampson"
 about:
   template: solana
-  image: hide_chiang_full.jpg
-  image-width: 7em
+  image: chiang_hide.jpg
+  image-width: 10em
 ---
 I work as a data scientist/analyst/etc. 
 
