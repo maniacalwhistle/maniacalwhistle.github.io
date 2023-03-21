@@ -7,17 +7,21 @@ website:
   navbar:
     title: false
     collapse: false
+    background: "#f7eee1"
+    foreground: "#1a029e"
     left:
       - href: index.qmd
-        text: Home
+        text: home
       - href: code_stuff.qmd
         text: code?
+    right:
+      - icon: github
+        text: maniacalwhistle
+        href: https://github.com/maniacalwhistle
 
 format:
   html:
     theme: cosmo
+    backgroundcolor: "#f7eee1"
     css: styles.css
     toc: true
-
-
-
