@@ -1,10 +1,24 @@
 [
   {
+    "objectID": "compost.html",
+    "href": "compost.html",
+    "title": "NYC Organics collection",
+    "section": "",
+    "text": "A simple exercise to learn how to use Observable. The task is to plot perctange of organics collected per month by boro/district for past 5 years. Add dynamic filter by borough."
+  },
+  {
+    "objectID": "compost.html#the-data-dsny-monthly-tonnage-data",
+    "href": "compost.html#the-data-dsny-monthly-tonnage-data",
+    "title": "NYC Organics collection",
+    "section": "The Data: DSNY Monthly Tonnage Data",
+    "text": "The Data: DSNY Monthly Tonnage Data\nNYC collects data on how much waste it collects from residences and institution per month. This data is open and available on the NYC Open Data portal, under DSNY Monthly Tonnage Data. Waste is reported in tons and is categorized by type. The description for the different types of waste are listed in the documentation, so I’ll only list them here with a brief description.\n\nRefuse (trash)\nPaper\nMGP (metal, glass, plastic and beverage cartons)\nResidential organics (food scraps, food-soiled paper, and yard waste)\nSchool organics (same as residential but from schools)\nLeaves organics (leaves collected in Nov. and Dec. within certain neighborhoods.\nXmas Trees (Christmas trees)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nimport {addTooltips} from \"@mkfreeman/plot-tooltip\"\n\n\n\n\n\n\n\n\n\nCode\n<!-- quarto needs row-wise array data so need to transpose -->\ndt = transpose(data)\n\n\n\n\n\n\n\n\n\nCode\n<!-- create a filtered dataset to pass to plot -->\nfiltered = dt.filter(function(collection) {\n  return BOROUGH.includes(collection.BOROUGH) && type.includes(collection.type)})\n\n\n\n\n\n\n\n\n\nCode\nviewof BOROUGH = Inputs.checkbox(\n  [\"Manhattan\", \"Brooklyn\", \"Queens\", \"Bronx\", \"Staten Island\"],\n  {value: [\"Manhattan\"],\n   label: \"Boroughs\"})\n   \nviewof type = Inputs.checkbox(\n  [\"refuse\", \"paper\", \"mgp\", \"organics\"],\n  {value: [\"organics\"],\n   label: \"Waste type\"})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nplotdata\n\n\n\n\nCode\naddTooltips(\nPlot.plot({\n  grid: true,\n  x: {\n    type: \"time\",\n    tickFormat: \"%b-%Y\"\n  },\n  facet: {\n    data: filtered,\n    y: \"BOROUGH\",\n    marginRight: 80\n  },\n  marks: [\n    Plot.lineY(filtered, {y: \"tons\", x: \"month_dt\", stroke: \"type\", title: d => `${d.tons} tons`}),\n    Plot.ruleY([0])\n  ]\n}))\n\n\n\n\n\n\n\n\n\n\n\nCode\nInputs.table(filtered)"
+  },
+  {
     "objectID": "code_stuff.html",
     "href": "code_stuff.html",
     "title": "code?",
     "section": "",
-    "text": "maybe some code stuff/write-ups here?"
+    "text": "compost"
   },
   {
     "objectID": "index.html",

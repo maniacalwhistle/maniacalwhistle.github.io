@@ -2,4 +2,4 @@
 title: "code?"
 ---
 
-maybe some code stuff/write-ups here?
+[compost](compost.qmd)

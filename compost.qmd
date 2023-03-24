@@ -1,0 +1,120 @@
+---
+title: "NYC Organics collection"
+date: "2023-03-24"
+format:
+  html:
+    code-fold: true
+knitr:
+  opts_chunk:
+    message: false
+execute:
+  echo: false
+---
+A simple exercise to learn how to use Observable.
+The task is to plot perctange of organics collected per month by boro/district for past 5 years. Add dynamic filter by borough.
+
+## The Data: DSNY Monthly Tonnage Data
+
+NYC collects data on how much waste it collects from residences and institution per month. This data is open and available on the NYC Open Data portal, under [DSNY Monthly Tonnage Data](https://data.cityofnewyork.us/City-Government/DSNY-Monthly-Tonnage-Data/ebb7-mvp5). Waste is reported in tons and is categorized by type. The description for the different types of waste are listed in the documentation, so I'll only list them here with a brief description.
+
+- Refuse (trash)
+- Paper
+- MGP (metal, glass, plastic and beverage cartons)
+- Residential organics (food scraps, food-soiled paper, and yard waste)
+- School organics (same as residential but from schools)
+- Leaves organics (leaves collected in Nov. and Dec. within certain neighborhoods.
+- Xmas Trees (Christmas trees)
+
+
+
+```{r}
+library(tidyverse)
+library(readr)
+library(lubridate)
+```
+
+<!-- 0. Import -->
+```{r}
+tonnage <- readr::read_csv('./dsny_monthly_tonnage_data.csv')
+```
+
+<!-- 1. Clean -->
+```{r}
+tonnage_5yrs <- tonnage |>
+  mutate(month_dt = lubridate::ym(MONTH)) |>
+  filter(lubridate::year(month_dt) >= year(today()) - 5) |>
+  mutate(collected_tons = rowSums(across(matches("COLLECTED$|TONS$")), na.rm = TRUE))|>
+  mutate(organics_tons = rowSums(across(matches("ORGANIC[S]?TONS$")), na.rm = TRUE))
+```
+
+```{r}
+organics_monthly <- tonnage_5yrs |>
+  group_by(BOROUGH, month_dt) |>
+  summarise(refuse = sum(REFUSETONSCOLLECTED),
+            paper = sum(PAPERTONSCOLLECTED),
+            mgp = sum(MGPTONSCOLLECTED),
+            organics = sum(organics_tons)) |>
+  pivot_longer(cols = !c("BOROUGH","month_dt"), names_to="type", values_to = "tons") 
+```
+
+<!-- 2. Visualize  -->
+```{r}
+# pass data from r to observable
+ojs_define(data = organics_monthly)
+```
+```{ojs}
+import {addTooltips} from "@mkfreeman/plot-tooltip"
+```
+```{ojs}
+<!-- quarto needs row-wise array data so need to transpose -->
+dt = transpose(data)
+```
+
+```{ojs}
+<!-- create a filtered dataset to pass to plot -->
+filtered = dt.filter(function(collection) {
+  return BOROUGH.includes(collection.BOROUGH) && type.includes(collection.type)})
+```
+
+```{ojs}
+<!-- controls for interaction -->
+viewof BOROUGH = Inputs.checkbox(
+  ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"],
+  {value: ["Manhattan"],
+   label: "Boroughs"})
+   
+viewof type = Inputs.checkbox(
+  ["refuse", "paper", "mgp", "organics"],
+  {value: ["organics"],
+   label: "Waste type"})
+```
+
+::: {.panel-tabset}
+### plot
+```{ojs}
+//| code-fold: true
+//| echo: true
+
+addTooltips(
+Plot.plot({
+  grid: true,
+  x: {
+    type: "time",
+    tickFormat: "%b-%Y"
+  },
+  facet: {
+    data: filtered,
+    y: "BOROUGH",
+    marginRight: 80
+  },
+  marks: [
+    Plot.lineY(filtered, {y: "tons", x: "month_dt", stroke: "type", title: d => `${d.tons} tons`}),
+    Plot.ruleY([0])
+  ]
+}))
+```
+### data
+```{ojs}
+Inputs.table(filtered)
+```
+:::
