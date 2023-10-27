@@ -5,12 +5,18 @@ about:
   image: chiang_hide.jpg
   image-width: 10em
 ---
-I work as a data scientist/analyst/etc. 
-
-I compost over at [Abyssinian Tot Lot](https://goo.gl/maps/Hpu3NwBHmcsRtrR69) in Harlem. Recently "certified" as a [master composter](https://www.makecompost.nyc/mastercomposter).
-
+I work as a data analyst at [Inclusiv](https://inclusiv.org).  
+I compost at [Abyssinian Tot Lot](https://goo.gl/maps/Hpu3NwBHmcsRtrR69).  
 I take care of some street trees near me from time to time as a NYC [super steward](https://www.nycgovparks.org/reg/stewardship). 
+I maintain trails in [Highbridge Park](https://www.nycgovparks.org/parks/highbridge-park)
 
-I am working my way through Marie Simmons' [The Good Egg](https://bookshop.org/p/books/good-egg-more-than-200-fresh-approaches-from-breakfast-to-dessert-marie-simmons/11859628?ean=9780618711949) over at [@the pretty good egg](https://www.instagram.com/the_pretty_good_egg/)
+My lifelong project is to cook every recipe in Marie Simmons' [The Good Egg](https://bookshop.org/p/books/good-egg-more-than-200-fresh-approaches-from-breakfast-to-dessert-marie-simmons/11859628?ean=9780618711949) 
+
+You can find me at:
+
+github    : [maniacalwhistle](https://github.com/maniacalwhistle)
+twitter   : [maniacalwhistle](https://twitter.com/maniacalwhistle)
+pinboard  : [maniacalwhistle](https://pinboard.in/u:maniacalwhistle)
+instagram : [@the pretty good egg](https://www.instagram.com/the_pretty_good_egg/)
 
 *photo: Hide, 2019 from Julia Chiang's Spit Sweat Shhh exhibit at The Modern Institute, Glasgow [(link)](https://ocula.com/art-galleries/the-modern-institute/exhibitions/spit-sweat-shhh/)*
